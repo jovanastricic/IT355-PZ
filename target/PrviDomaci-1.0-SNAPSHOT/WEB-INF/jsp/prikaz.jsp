@@ -6,11 +6,11 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h2>Podaci o studentu</h2>
+        <h2>Podaci o zakazanom pregledu</h2>
         <table>
             <tr>
                 <td>Ime i prezime</td>
-                <td>${ime}</td>
+                <td>${imeIPrezime}</td>
             </tr>
             <tr>
                 <td>jmbg</td>
