@@ -1,5 +1,6 @@
 com\it355\prvidomaci\PrviController.class
 com\it355\aspect\InterceptorLog.class
 com\it355\model\Pregled.class
+com\it355\prvidomaci\HelloController.class
 com\it355\dao\impl\PregledDaoImpl.class
 com\it355\dao\PregledDao.class
