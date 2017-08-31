@@ -9,7 +9,15 @@ http://www.springframework.org/schema/security/spring-security-3.2.xsd">
     
     <http auto-config="true" use-expressions="true">
         <intercept-url pattern="/admin**" access="hasRole('ROLE_ADMIN')" />
-        <access-denied-handler error-page="/403" />
+        <intercept-url pattern="/addusluga" access="hasRole('ROLE_ADMIN')" />
+        <intercept-url pattern="/usluge" access="hasRole('ROLE_USER')" />
+        <intercept-url pattern="/korisnici" access="hasRole('ROLE_USER')" />
+        <intercept-url pattern="/success" access="permitAll" method="POST" />
+        <intercept-url pattern="/failure" access="permitAll" method="POST" />
+        <intercept-url pattern="/loginFlow" access="permitAll" method="POST" />
+
+        
+        <!--   <access-denied-handler error-page="/403" /> -->
 
         <form-login
             login-page="/login"

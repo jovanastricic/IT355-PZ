@@ -15,8 +15,7 @@
         </script>
         <c:if test = "${pageContext.request.userPrincipal.name != null}">
               <h2>
-                  Username je :
-                  ${pageContext.request.userPrincipal.name} | <a href="javascript:formSubmit()"> Logout</a>
+                  Username je : ${pageContext.request.userPrincipal.name} | <a href="javascript:formSubmit()"> Logout</a>
               </h2>
         </c:if>
     </body>

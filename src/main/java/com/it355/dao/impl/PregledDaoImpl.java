@@ -21,18 +21,18 @@ public class PregledDaoImpl implements PregledDao {
     @Override
     public String addPregledRet() {
         System.out.println("Dodajem pregled i vracam vrednost");
-        return "dodato";
+        return "Dodato";
     }
 
     @Override
     public void addPregledThrowException() throws Exception {
-        System.out.println("dodajem pregled, ali bacicu gresku");
+        System.out.println("Dodajem pregled, ali bacicu gresku");
         throw new Exception("Generic Error");
     }
 
     @Override
     public void addPregledAround(String name) {
-        System.out.println("dodajem pregled pod imenom: " + name);
+        System.out.println("Dodajem pregled pod imenom: " + name);
     }
 
 }
