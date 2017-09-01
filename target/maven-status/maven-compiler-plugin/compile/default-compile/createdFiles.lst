@@ -9,7 +9,6 @@ com\it355\flow\LoginBean.class
 com\it355\controller\HelloController.class
 com\it355\service\impl\KorisnikServiceImpl.class
 com\it355\controller\CRUDController.class
-com\it355\restController\MyAFTERControler.class
 com\it355\hibernatecrud\entity\Ordinacija.class
 com\it355\dao\PregledDao.class
 com\it355\service\impl\UslugaServiceImpl.class
