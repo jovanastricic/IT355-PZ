@@ -18,9 +18,71 @@ http://www.springframework.org/schema/mvc/spring-mvc.xsd
 http://www.springframework.org/schema/context
 http://www.springframework.org/schema/context/spring-context-3.0.xsd
 http://www.springframework.org/schema/aop
-http://www.springframework.org/schema/aop/spring-aop.xsd">
+http://www.springframework.org/schema/aop/spring-aop.xsd
+http://www.springframework.org/schema/tx
+http://www.springframework.org/schema/tx/spring-tx.xsd">
     
     <context:component-scan base-package="com.it355.*" />
+    
+    <!--Kako bi Hibernate mogao da se poveže na bazu podataka
+    potrebno je kreirati sesiju. To radimo u sledećem
+    zrnu-->
+    <bean id="sessionFactory"
+          class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="configLocation">
+            <!--Dodavanje path-a na kome se nalaze podešavanja
+            za Hibernate -->
+            <value>classpath:hibernate.cfg.xml</value>
+        </property>
+        <!-- Dodavanje path-a paketa u kome se nalaze entity
+        fajlovi na osnovu kojih
+        će Hibernate kreirati bazu i upisivati u nju-->
+        <property name="packagesToScan">
+            <list>
+                <value>com.it355.hibernatecrud.entity</value>
+            </list>
+        </property>
+    </bean>
+    
+    <!--Transakcija se dešava između baze i programa korišćenjem Transaction Managera koji definišemo ovde. Оn koristi sesiju koju smo definisali iznad    -->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+    <bean id="transactionManager"
+          class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>  
+    <bean id="promenaDao"
+          class="com.it355.hibernatecrud.dao.impl.PromenaDaoImpl">
+    </bean>
+    <bean id="persistenceExceptionTranslationPostProcessor"
+          class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
+    
+    <mvc:annotation-driven conversion-service="conversionService" />
+    <tx:annotation-driven />
+    
+    <mvc:default-servlet-handler />
+    <mvc:resources mapping="/resources/**" location="/WEB-INF/"/>
+    <bean id="conversionService"
+          class="org.springframework.context.support.ConversionServiceFactoryBean">
+        <property name="converters">
+            <set>
+                <bean
+                    class="com.it355.hibernatecrud.converter.IntegerToOrdinacija" />
+            </set>
+        </property>
+    </bean>
+
+
+
+
+
+
+
+
+
+
+
+    
     <bean
         class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/jsp/" />
@@ -33,7 +95,7 @@ http://www.springframework.org/schema/aop/spring-aop.xsd">
                 <value>/WEB-INF/lang/pregled</value>
             </list>
         </property>
-        <property name="defaultEncoding" value="UTF-8"/>
+        <property name="defaultEncoding" value="UTF-8"/>   
     </bean>
     <bean id="pregledDao"
           class="com.it355.dao.impl.PregledDaoImpl" />
@@ -56,6 +118,5 @@ http://www.springframework.org/schema/aop/spring-aop.xsd">
         </property>
     </bean>
     <import resource="flow-definition.xml"/> 
-    <mvc:resources mapping="/resources/**" location="/resources/" />
-    <mvc:annotation-driven />
+    
 </beans>

@@ -112,13 +112,13 @@ public class HelloController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/addusluga", method = RequestMethod.GET)
+    @RequestMapping(value = "/adduslugaa", method = RequestMethod.GET)
     public String addUsluga(Model model) {
         model.addAttribute("usluga", new Usluga());
-        return "addusluga";
+        return "adduslugaa";
     }
 
-    @RequestMapping(value = "/addusluga", method = RequestMethod.POST)
+    @RequestMapping(value = "/adduslugaa", method = RequestMethod.POST)
     public ModelAndView addUsluga(@ModelAttribute("usluga") Usluga u, ModelAndView model) {
         model.addObject("object", u);
         u.setId_usluga(uslugaDao.getCount() + 1);
