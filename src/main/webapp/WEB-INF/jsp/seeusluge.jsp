@@ -13,7 +13,8 @@
                 <th>Tip usluge</th>
                 <th>Naziv usluge</th>
                 <th>Cena usluge</th>
-                <th>Edit</th>
+                <th>Ordinacija</th>
+                <th >Edit</th>
                 <th>Delete</th>
             </tr>
         </thead>

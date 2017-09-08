@@ -51,9 +51,7 @@ http://www.springframework.org/schema/tx/spring-tx.xsd">
           class="org.springframework.orm.hibernate4.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory" />
     </bean>  
-    <bean id="promenaDao"
-          class="com.it355.hibernatecrud.dao.impl.PromenaDaoImpl">
-    </bean>
+    <bean id="promenaDao" class="com.it355.hibernatecrud.dao.impl.PromenaDaoImpl"/>
     <bean id="persistenceExceptionTranslationPostProcessor"
           class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
     
@@ -61,28 +59,18 @@ http://www.springframework.org/schema/tx/spring-tx.xsd">
     <tx:annotation-driven />
     
     <mvc:default-servlet-handler />
-    <mvc:resources mapping="/resources/**" location="/WEB-INF/"/>
+    <mvc:resources mapping="/resources/**" location="/resources/"/>
     <bean id="conversionService"
           class="org.springframework.context.support.ConversionServiceFactoryBean">
         <property name="converters">
             <set>
                 <bean
-                    class="com.it355.hibernatecrud.converter.IntegerToOrdinacija" />
+                    class="com.it355.hibernatecrud.converter.IntegerToString" /><!-- Ordinacija -->
             </set>
         </property>
     </bean>
 
-
-
-
-
-
-
-
-
-
-
-    
+   
     <bean
         class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/jsp/" />
@@ -97,8 +85,6 @@ http://www.springframework.org/schema/tx/spring-tx.xsd">
         </property>
         <property name="defaultEncoding" value="UTF-8"/>   
     </bean>
-    <bean id="pregledDao"
-          class="com.it355.dao.impl.PregledDaoImpl" />
     <bean id="logAspect"
           class="com.it355.aspect.InterceptorLog" />
     <bean id="logPointcutAdvisor"
@@ -110,7 +96,7 @@ http://www.springframework.org/schema/tx/spring-tx.xsd">
     </bean>
     <bean id="testServiceProxy"
           class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
-        <property name="beanNames" value="pregledDao" />
+        <property name="beanNames" value="terminDao" />
         <property name="interceptorNames">
             <list>
                 <value>logPointcutAdvisor</value>

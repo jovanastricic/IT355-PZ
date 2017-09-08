@@ -1,0 +1,29 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 06-Sep-2017, 04:37:39
+    Author     : Jovana BGD
+*/
+
+.container {
+    background-image: url('https://www.bagnallfamilydentistry.com/wp-content/uploads/2013/06/dental-stock-15-e1404470293679.jpg');
+    /* Full height */
+    height: 100%; 
+
+    /* Full width */
+    width: 100%; 
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+//datatabe
+/*
+.table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
+   background-color: red;
+}*/

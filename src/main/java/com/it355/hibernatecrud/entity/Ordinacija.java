@@ -24,6 +24,7 @@ import javax.persistence.Table;
 @SuppressWarnings("unused")
 @Entity
 @Table(name = "ordinacija")
+
 public class Ordinacija {
 
     @Id

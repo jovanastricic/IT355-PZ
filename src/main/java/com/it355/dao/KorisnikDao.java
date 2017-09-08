@@ -28,4 +28,14 @@ public interface KorisnikDao {
 
     public boolean updateKorisnik(Korisnik korisnik);
 
+    public boolean addUser(int korisnik, String username, String password);
+
+    public int getNextIdUser();
+
+    public boolean addUserRole(int idK);
+
+    public int getNextIdUserRole();
+    
+     public int getIDByUsername(String name);
+    
 }

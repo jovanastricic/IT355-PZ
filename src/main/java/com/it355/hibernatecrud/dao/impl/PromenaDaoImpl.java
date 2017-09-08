@@ -84,7 +84,7 @@ public class PromenaDaoImpl implements PromenaDao {
     @Override
     @Transactional
     public List<Usluga> getUslugaByOrdinacija(Ordinacija ordinacija) {
-        return (List<Usluga>) getSession().createCriteria(Usluga.class).add(Restrictions.eq("klub", ordinacija))
+        return (List<Usluga>) getSession().createCriteria(Usluga.class).add(Restrictions.eq("ordinacija", ordinacija))
                 .list();
     }
 

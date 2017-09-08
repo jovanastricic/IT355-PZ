@@ -16,40 +16,40 @@
             <div class="form-group">
                 <form:input type="hidden" id="id_ordinacija" class="form-control" placeholder="id_ordinacija" path="id_ordinacija" />
                 <form:label path="naziv_ordinacija">
-                    Naziv ordinacija
+                    Naziv ordinacije
                 </form:label>
-                <form:input type="naziv_ordinacija" class="form-control" id="naziv_ordinacija" placeholder="naziv_ordinacija" path="naziv_ordinacija" />
+                <form:input type="naziv_ordinacija" class="form-control" id="naziv_ordinacija" placeholder="naziv" path="naziv_ordinacija" />
             </div>
             <div class="form-group">
                 <form:label path="opis_ordinacija">
                     Opis ordinacije
                 </form:label>
-                <form:input type="opis_ordinacija" class="form-control" id="opis_ordinacija" placeholder="opis_ordinacija" path="opis_ordinacija" />
+                <form:input type="opis_ordinacija" class="form-control" id="opis_ordinacija" placeholder="opis" path="opis_ordinacija" />
             </div>
             <div class="form-group">
                 <form:label path="adresa_ordinacija">
                     Adresa ordinacije
                 </form:label>
-                <form:input type="adresa_ordinacija" class="form-control" id="adresa_ordinacija" placeholder="adresa_ordinacija" path="adresa_ordinacija" />
+                <form:input type="adresa_ordinacija" class="form-control" id="adresa_ordinacija" placeholder="adresa" path="adresa_ordinacija" />
             </div>
             <div class="form-group">
                 <form:label path="telefon_ordinacija">
                     Kontakt telefon
                 </form:label>
-                <form:input type="telefon_ordinacija" class="form-control" id="telefon_ordinacija" placeholder="telefon_ordinacija" path="telefon_ordinacija" />
+                <form:input type="telefon_ordinacija" class="form-control" id="telefon_ordinacija" placeholder="telefon" path="telefon_ordinacija" />
             </div>
             <div class="form-group">
                 <div class="form-group">
                     <form:label path="email_ordinacija">
                         Email 
                     </form:label>
-                    <form:input type="email_ordinacija" class="form-control" id="email_ordinacija" placeholder="email_ordinacija" path="email_ordinacija" />
+                    <form:input type="email_ordinacija" class="form-control" id="email_ordinacija" placeholder="email" path="email_ordinacija" />
                 </div>
                 <div class="form-group">
                     <form:label path="radnovreme_ordinacija">
                         Radno vreme
                     </form:label>
-                    <form:input type="radnovreme_ordinacija" class="form-control" id="radnovreme_ordinacija" placeholder="radnovreme_ordinacija" path="radnovreme_ordinacija" />
+                    <form:input type="radnovreme_ordinacija" class="form-control" id="radnovreme_ordinacija" placeholder="radnovreme" path="radnovreme_ordinacija" />
                 </div>
 
                 <button type="submit" class="btn btn-primary">ADD</button>

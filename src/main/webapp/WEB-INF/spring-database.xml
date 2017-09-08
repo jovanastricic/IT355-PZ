@@ -32,14 +32,27 @@ http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
     <bean name="uslugaService"
           class="com.it355.service.impl.UslugaServiceImpl"/>
     
+    <bean name="terminService"
+            class="com.it355.service.impl.TerminServiceImpl"/>
     
+    <bean name="ordinacijaService"
+                class="com.it355.service.impl.OrdinacijaServiceImpl"/>
     <!-- Dao -->
     <bean name="korisnikDao"
           class="com.it355.dao.impl.KorisnikDaoImpl">
         <property name="dataSource" ref="dataSource" />
     </bean>
     
-    
+    <bean name="terminDao"
+          class="com.it355.dao.impl.TerminDaoImpl">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+
+
+    <bean name="ordinacijaDao"
+           class="com.it355.dao.impl.OrdinacijaDaoImpl">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
     <bean name="uslugaDao" class="com.it355.dao.impl.UslugaDaoImpl">  <!--  -->
         <property name="dataSource" ref="dataSource" />
 

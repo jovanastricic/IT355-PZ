@@ -40,14 +40,14 @@ public class CRUDController {
     }
 
     @RequestMapping(value = "/addUsluga", method = RequestMethod.GET)
-    public String addUtakmica(Model model) {
+    public String addUsluga(Model model) {
         model.addAttribute("usluga", new Usluga());
         model.addAttribute("ordinacije", promenaDao.getOrdinacije());
         return "addUsluga";
     }
 
     @RequestMapping(value = "/editUsluga/{id}", method = RequestMethod.GET)
-    public String addUtakmica(@PathVariable("id") int id, Model model) {
+    public String addUsluga(@PathVariable("id") int id, Model model) {
         Usluga usluga = promenaDao.getUslugaById(id);
         model.addAttribute("usluga", usluga);
         model.addAttribute("ordinacije", promenaDao.getOrdinacije());
@@ -55,7 +55,7 @@ public class CRUDController {
     }
 
     @RequestMapping(value = "/addUsluga", method = RequestMethod.POST)
-    public ModelAndView addUtakmica(@ModelAttribute("usluga") Usluga usl, ModelAndView model) {
+    public ModelAndView addUsluga(@ModelAttribute("usluga") Usluga usl, ModelAndView model) {
         //   uta.setEnabled(Boolean.TRUE);   ako ne radi dodati atribut
         usl = promenaDao.addUsluga(usl);
         model.addObject("ordinacije", promenaDao.getOrdinacije());
@@ -72,8 +72,8 @@ public class CRUDController {
 
     @RequestMapping(value = "/addOrdinacija", method = RequestMethod.POST)
     public ModelAndView addOrdinacija(@ModelAttribute("ordinacija") Ordinacija ord, ModelAndView model) {
-        //   klu.setEnabled(Boolean.TRUE);
-        //  klu.setId_klub(10);
+        //   ord.setEnabled(Boolean.TRUE);
+        //  ord.setId_ordinacija(2);
         System.out.println("aaa " + ord.toString());
         promenaDao.addOrdinacija(ord);
         model.addObject("successMsg", "Ordinacija uspesno dodata");

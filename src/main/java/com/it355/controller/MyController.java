@@ -30,7 +30,7 @@ public class MyController {
     @Autowired
     PromenaDao promenaDao;
 
-    //metoda koja prikazuje sve produkte, tipa get, a proizvode prikazuje u JSON formatu
+    //metoda koja prikazuje sve usluge, tipa get, a proizvode prikazuje u JSON formatu
     @RequestMapping(value = "/usluge", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Usluga>> getUsluge() {
         System.out.println("Fetching usluge");
@@ -42,7 +42,7 @@ public class MyController {
         return new ResponseEntity<List<Usluga>>(usluge, HttpStatus.OK);
     }
 
-    //metoda koja po id-ju prikazuje jedan produkt. 
+    //metoda koja po id-ju prikazuje jednu uslugu. 
     //na adresi http://localhost:8080/HibernateCRUD/product/4 pozivamo ovu metodu
     //
     @RequestMapping(value = "/usluga/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -56,7 +56,7 @@ public class MyController {
         return new ResponseEntity<Usluga>(usluga, HttpStatus.OK);
     }
 
-    //metoda koja cuva proizvod u bazu
+    //metoda koja cuva uslugu u bazu
     @RequestMapping(value = "/usluga/", method = RequestMethod.POST)
     public ResponseEntity<Void> addUsluga(@RequestBody Usluga usluga) {
         System.out.println("Adding usluga " + usluga.toString());
@@ -66,7 +66,7 @@ public class MyController {
         return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
     }
 
-    //metoda koja uzima proizvod iz baze po id-u, menja ga i cuva ga u bazi
+    //metoda koja uzima uslugu iz baze po id-u, menja je  i cuva u bazi
     @RequestMapping(value = "/usluga/{id}", method = RequestMethod.PUT)
     public ResponseEntity<Usluga> updateUsluga(@PathVariable("id") int id, @RequestBody Usluga usluga) {
         System.out.println("Updating usluga " + id);
@@ -76,7 +76,7 @@ public class MyController {
         return new ResponseEntity<Usluga>(usluga, HttpStatus.OK);
     }
 
-    //metoda koja po id-u nalazi i brise produkt iz baze
+    //metoda koja po id-u nalazi i brise uslugu iz baze
     @RequestMapping(value = "/usluga/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Usluga> deleteUsluga(@PathVariable("id") int id) {
         System.out.println("Fetching & Deleting usluga with id " + id);

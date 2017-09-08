@@ -20,6 +20,8 @@ public class Korisnik implements Serializable{
     private String adresa_korisnik;
     private String email_korisnik;
     private String telefon_korisnik;
+    private String username;
+    private String password;
 
     public int getId_korisnik() {
         return id_korisnik;
@@ -68,6 +70,23 @@ public class Korisnik implements Serializable{
     public void setTelefon_korisnik(String telefon_korisnik) {
         this.telefon_korisnik = telefon_korisnik;
     }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    
 
     @Override
     public String toString() {

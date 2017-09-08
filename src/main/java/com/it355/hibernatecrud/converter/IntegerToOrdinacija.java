@@ -9,6 +9,7 @@ package com.it355.hibernatecrud.converter;
  *
  * @author Jovana BGD
  */
+
 import com.it355.hibernatecrud.dao.PromenaDao;
 import com.it355.hibernatecrud.entity.Ordinacija;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,10 @@ import org.springframework.stereotype.Component;
 final public class IntegerToOrdinacija implements Converter<String, Ordinacija> {
 
     @Autowired
-    PromenaDao uslugaDao;
+    PromenaDao promenaDao;   
+    
+    
+    
 
     @Override
     public Ordinacija convert(String s) {
@@ -27,8 +31,8 @@ final public class IntegerToOrdinacija implements Converter<String, Ordinacija> 
             return null;
         }
         Integer valeu = Integer.valueOf(s);
-        System.out.println("Konvertujem u kategoriju");
-        Ordinacija ord = uslugaDao.getOrdinacijaById(valeu);
+        System.out.println("Konvertujem u ordinaciju");
+        Ordinacija ord = promenaDao.getOrdinacijaById(valeu);
         return ord;
     }
 }

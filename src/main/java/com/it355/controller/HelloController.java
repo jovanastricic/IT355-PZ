@@ -6,13 +6,20 @@
 package com.it355.controller;
 
 import com.it355.dao.KorisnikDao;
+import com.it355.dao.OrdinacijaDao;
+import com.it355.dao.TerminDao;
 import com.it355.dao.UslugaDao;
 import com.it355.model.Korisnik;
+import com.it355.model.Ordinacija;
+import com.it355.model.Termin;
 import com.it355.model.Usluga;
 import com.it355.service.KorisnikService;
+import com.it355.service.OrdinacijaService;
+import com.it355.service.TerminService;
 import com.it355.service.UslugaService;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
+import javax.swing.JOptionPane;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -37,24 +44,49 @@ public class HelloController {
     KorisnikDao korisnikDao;
 
     @Autowired
+    TerminDao terminDao;
+
+    @Autowired
+    OrdinacijaDao ordinacijaDao;
+
+    @Autowired
     UslugaService uslugaService;
 
     @Autowired
     KorisnikService korisnikService;
 
+    @Autowired
+    TerminService terminService;
+
+    @Autowired
+    OrdinacijaService ordinacijaService;
+
     @RequestMapping(value = {"/"}, method = RequestMethod.GET)
     public ModelAndView defaultPage() {
         ModelAndView model = new ModelAndView();
-        model.addObject("message", "Ovo je strana kojoj svi moguda pristupe!");
+        //model.addObject("message", "Ovo je strana kojoj svi moguda pristupe!");
         model.setViewName("hello");
         return model;
     }
 
-    @RequestMapping(value = {"/welcome"}, method = RequestMethod.GET)
-    public ModelAndView welcomePage() {
+    @RequestMapping(value = {"/kontakt"}, method = RequestMethod.GET)
+    public ModelAndView kontaktPage() {
         ModelAndView model = new ModelAndView();
-        model.addObject("message", "Ovo je strana kojoj svi mogu da pristupe!");
-        model.setViewName("hello");
+        model.setViewName("kontakt");
+        return model;
+    }
+
+    @RequestMapping(value = {"/saveti"}, method = RequestMethod.GET)
+    public ModelAndView savetiPage() {
+        ModelAndView model = new ModelAndView();
+        model.setViewName("saveti");
+        return model;
+    }
+
+    @RequestMapping(value = {"/onama"}, method = RequestMethod.GET)
+    public ModelAndView onamaPage() {
+        ModelAndView model = new ModelAndView();
+        model.setViewName("onama");
         return model;
     }
 
@@ -80,6 +112,30 @@ public class HelloController {
         return model;
     }
 
+///////////////////////////
+    @RequestMapping(value = "/register", method = RequestMethod.GET)
+    public ModelAndView register(ModelAndView modelAndView) {
+        modelAndView.addObject("korisnik", new Korisnik());
+        modelAndView.setViewName("register");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    public ModelAndView register(@ModelAttribute("korisnik") Korisnik korisnik, ModelAndView model) {
+        model.addObject("object", korisnik);
+        korisnik.setId_korisnik(korisnikDao.getNextId());
+        korisnikDao.addKorisnik(korisnik);
+        int idUser = korisnikDao.getNextIdUser();
+        korisnikDao.addUser(korisnik.getId_korisnik(), korisnik.getUsername(), korisnik.getPassword());
+
+        korisnikDao.addUserRole(idUser);
+
+        model.setViewName("login");
+        return model;
+
+    }
+
+    /////////////////////////
     @RequestMapping(value = "/403", method = RequestMethod.GET)
     public ModelAndView accesssDenied() {
         ModelAndView model = new ModelAndView();
@@ -109,6 +165,14 @@ public class HelloController {
         }
         modelAndView.addObject("korisnici", korisnici);
         modelAndView.setViewName("korisnici");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/termini", method = RequestMethod.GET)
+    public ModelAndView termini(ModelAndView modelAndView) {
+        List<Termin> termini = terminDao.getAllTermini();
+        modelAndView.addObject("termini", termini);
+        modelAndView.setViewName("termini");
         return modelAndView;
     }
 
@@ -186,4 +250,54 @@ public class HelloController {
         return model;
     }
 
+    @RequestMapping(value = "/addtermin", method = RequestMethod.GET)
+    public String addTermin(Model model) {
+        model.addAttribute("termin", new Termin());
+        List<Ordinacija> ordinacije = ordinacijaDao.getAllOrdinacije();
+
+        model.addAttribute("ordinacije", ordinacije);
+        return "pregled";
+    }
+
+    @RequestMapping(value = "/addtermin", method = RequestMethod.POST)
+    public ModelAndView addTermin(@ModelAttribute("termin") Termin term, ModelAndView model) {
+        model.addObject("object", term);
+        
+        term.setId_termin(terminDao.getNextId());//
+        
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName();
+        
+        int idUser = korisnikDao.getIDByUsername(name);
+
+        term.setId_korisnik(idUser);
+        
+        terminDao.addTermin(term);
+        
+        model.setViewName("hello");
+        return model;
+    }
+    /*  
+     @RequestMapping(value = "/deletetermin/{id}", method = RequestMethod.GET)
+     public String deleteTermin(@PathVariable("id") int id,
+     HttpServletRequest request) {
+     terminDao.deleteTermin(id);
+     return "hello";
+     }
+    
+     @RequestMapping(value = "/updatetermin/{id}", method = RequestMethod.GET)
+     public ModelAndView updateTermin(@PathVariable("id") int id, HttpServletRequest request, ModelAndView model) {
+     Termin termin = terminDao.getById(id);
+     model.addObject("usluga", termin);
+     model.setViewName("updatetermin");
+     return model;
+     }
+    
+     @RequestMapping(value = "/updatetermin/{id}", method = RequestMethod.POST)
+     public ModelAndView updateTermin(@ModelAttribute("termin") Termin t, ModelAndView model) {
+     model.addObject("object", t);
+     model.setViewName("hello");
+     terminDao.updateTermin(t);
+     return model;
+     }*/
 }
